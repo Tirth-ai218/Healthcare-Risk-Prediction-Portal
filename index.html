@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthCare Portal</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Login Page -->
+        <div id="loginPage" class="page active">
+            <div class="card">
+                <h1>Welcome Back </h1>
+                <p class="subtitle">Login to your healthcare portal</p>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <div id="loginError" class="error"></div>
+                    <button type="submit" class="btn">Login</button>
+                </form>
+                <a href="#" class="link-btn" onclick="showPage('signupPage')">Don't have an account? Sign up</a>
+            </div>
+        </div>
+
+        <!-- Signup Page -->
+        <div id="signupPage" class="page">
+            <div class="card">
+                <h1>Create Account</h1>
+                <p class="subtitle">Join our healthcare portal</p>
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" required minlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupConfirmPassword">Confirm Password</label>
+                        <input type="password" id="signupConfirmPassword" required>
+                    </div>
+                    <div id="signupError" class="error"></div>
+                    <button type="submit" class="btn">Sign Up</button>
+                </form>
+                <a href="#" class="link-btn" onclick="showPage('loginPage')">Already have an account? Login</a>
+            </div>
+        </div>
+        
+
+        <!-- Landing Page -->
+        <div id="landingPage" class="page">
+            <div class="navbar">
+                <h2 style="margin: 0;">HealthCare Portal</h2>
+                <div class="nav-links">
+                    <a href="#" class="nav-link" onclick="showPage('userInfoPage')">Health Assessment</a>
+                    <a href="#" class="nav-link" onclick="showPage('historyPage')">History</a>
+                     <a href="#" class="nav-link" onclick="showPage('contactpage')">Contact Our Team</a>
+                    <a href="#" class="nav-link" onclick="logout()">Logout</a>
+                </div>
+            </div>
+            
+            <div class="hero">
+                <h1>Your Health, Our Priority</h1>
+                <p>Comprehensive health risk assessment and personalized care</p>
+                <button class="btn" style="max-width: 300px; margin: 0 auto;" onclick="showPage('userInfoPage')">Start Health Assessment</button>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🏥</div>
+                    <h3>Health Assessment</h3>
+                    <p>Complete health information form for accurate predictions</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Risk Analysis</h3>
+                    <p>AI-powered health risk prediction based on your data</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>History Tracking</h3>
+                    <p>View and manage your health assessment history</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Info Form Page -->
+        <div id="userInfoPage" class="page">
+            <div class="navbar">
+                <h2 style="margin: 0;">HealthCare Portal</h2>
+                <div class="nav-links">
+                    <a href="#" class="nav-link" onclick="showPage('landingPage')">Home</a>
+                    <a href="#" class="nav-link" onclick="showPage('historyPage')">History</a>
+                     <a href="#" class="nav-link" onclick="showPage('contactpage')">Contact Our Team</a>
+                    <a href="#" class="nav-link" onclick="logout()">Logout</a>
+                </div>
+            </div>
+
+            <div class="card wide-card">
+                <h2>Health Information Form</h2>
+                <form id="healthForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" required min="1" max="120">
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select id="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="height">Height (cm)</label>
+                            <input type="number" id="height" required min="50" max="250">
+                        </div>
+                        <div class="form-group">
+                            <label for="weight">Weight (kg)</label>
+                            <input type="number" id="weight" required min="20" max="300">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bloodPressure">Blood Pressure (mmHg)</label>
+                            <input type="text" id="bloodPressure" placeholder="120/80" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bloodSugar">Blood Sugar (mg/dL)</label>
+                            <input type="number" id="bloodSugar" required min="50" max="500">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cholesterol">Cholesterol (mg/dL)</label>
+                            <input type="number" id="cholesterol" required min="100" max="400">
+                        </div>
+                        <div class="form-group">
+                            <label for="heartRate">Heart Rate (bpm)</label>
+                            <input type="number" id="heartRate" required min="40" max="200">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="smoking">Smoking Status</label>
+                        <select id="smoking" required>
+                            <option value="">Select Status</option>
+                            <option value="never">Never</option>
+                            <option value="former">Former Smoker</option>
+                            <option value="current">Current Smoker</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exercise">Exercise Frequency</label>
+                        <select id="exercise" required>
+                            <option value="">Select Frequency</option>
+                            <option value="none">None</option>
+                            <option value="occasional">Occasional (1-2 times/week)</option>
+                            <option value="regular">Regular (3-4 times/week)</option>
+                            <option value="frequent">Frequent (5+ times/week)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="medicalHistory">Medical History</label>
+                        <textarea id="medicalHistory" rows="4" placeholder="List any chronic conditions, allergies, or significant medical history..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="medications">Current Medications</label>
+                        <textarea id="medications" rows="3" placeholder="List any medications you're currently taking..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn">Submit & Get Risk Assessment</button>
+                    <button type="button" class="btn btn-secondary" onclick="showPage('landingPage')">Cancel</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Health Risk Prediction Page -->
+        <div id="predictionPage" class="page">
+            <div class="navbar">
+                <h2 style="margin: 0;">HealthCare Portal</h2>
+                <div class="nav-links">
+                    <a href="#" class="nav-link" onclick="showPage('landingPage')">Home</a>
+                    <a href="#" class="nav-link" onclick="showPage('historyPage')">History</a>
+                     <a href="#" class="nav-link" onclick="showPage('contactpage')">Contact Our Team</a>
+                    <a href="#" class="nav-link" onclick="logout()">Logout</a>
+                </div>
+            </div>
+
+            <div class="card wide-card">
+                <h2>Health Risk Assessment</h2>
+                <div id="riskResult"></div>
+                <div id="recommendations" style="margin-top: 30px;"></div>
+                <button class="btn" onclick="showPage('landingPage')">Back to Home</button>
+                <button class="btn btn-secondary" onclick="showPage('userInfoPage')">New Assessment</button>
+            </div>
+        </div>
+
+        <!-- History Page -->
+        <div id="historyPage" class="page">
+            <div class="navbar">
+                <h2 style="margin: 0;">HealthCare Portal</h2>
+                <div class="nav-links">
+                    <a href="#" class="nav-link" onclick="showPage('landingPage')">Home</a>
+                    <a href="#" class="nav-link" onclick="showPage('userInfoPage')">New Assessment</a>
+                     <a href="#" class="nav-link" onclick="showPage('contactpage')">Contact Our Team</a>
+                    <a href="#" class="nav-link" onclick="logout()">Logout</a>
+                </div>
+            </div>
+
+            <div class="card wide-card">
+                <h2>Assessment History</h2>
+                <div id="historyList"></div>
+            </div>
+        </div>
+<!-- doctors html -->
+
+        <!-- Contact Page -->
+<div id="contactpage" class="page">
+    <!-- Navbar -->
+    <div class="navbar">
+        <h2 style="margin: 0;">HealthCare Portal</h2>
+        <div class="nav-links">
+            <a href="#" class="nav-link" onclick="showPage('landingPage')">Home</a>
+            <a href="#" class="nav-link" onclick="showPage('userInfoPage')">New Assessment</a>
+            <a href="#" class="nav-link" onclick="showPage('contactpage')">Contact Our Team</a>
+            <a href="#" class="nav-link" onclick="logout()">Logout</a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>Contact Our Healthcare Team</h1>
+        <p>Reach out to our experienced Medical Professionals</p>
+    </div>
+
+    <!-- Doctors Grid -->
+    <div class="doctors-grid">
+        <div class="doctor-card">
+            <div class="doctor-photo">DS</div>
+            <div class="doctor-info">
+                <div class="doctor-name">Dr. Khushi Vaghela</div>
+                <div class="doctor-specialty">General Physician</div>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        📞 <a href="tel:+919876543210">+91 98765 43210</a>
+                    </div>
+                    <div class="contact-item">
+                        📧 <a href="mailto:dr.mitchell@healthcare.com">dr.khushi@healthcare.com</a>
+                    </div>
+                    <div class="contact-item">
+                        ⏰ Mon-Fri: 9:00 AM - 5:00 PM
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="doctor-card">
+            <div class="doctor-photo">RK</div>
+            <div class="doctor-info">
+                <div class="doctor-name">Dr. Rajesh Kumar</div>
+                <div class="doctor-specialty">Cardiologist</div>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        📞 <a href="tel:+919876543211">+91 98765 43211</a>
+                    </div>
+                    <div class="contact-item">
+                        📧 <a href="mailto:dr.kumar@healthcare.com">dr.kumar@healthcare.com</a>
+                    </div>
+                    <div class="contact-item">
+                        ⏰ Mon-Sat: 10:00 AM - 6:00 PM
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="doctor-card">
+            <div class="doctor-photo">AP</div>
+            <div class="doctor-info">
+                <div class="doctor-name">Dr. Anita Patel</div>
+                <div class="doctor-specialty">Pediatrician</div>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        📞 <a href="tel:+919876543212">+91 98765 43212</a>
+                    </div>
+                    <div class="contact-item">
+                        📧 <a href="mailto:dr.patel@healthcare.com">dr.patel@healthcare.com</a>
+                    </div>
+                    <div class="contact-item">
+                        ⏰ Mon-Fri: 8:00 AM - 4:00 PM
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- General Contact Info -->
+    <div class="general-contact">
+        <h2>General Information</h2>
+        <div class="general-info">
+            <div class="info-block">
+                <h3>Emergency Contact</h3>
+                📞 <a href="tel:108">108 (24/7)</a>
+            </div>
+            <div class="info-block">
+                <h3>Reception</h3>
+                📞 <a href="tel:+917926543210">+91 99999 99999</a>
+            </div>
+            <div class="info-block">
+                <h3>Address</h3>
+                📍 Medical Plaza, Ahmedabad, Gujarat
+            </div>
+        </div>
+    </div>
+</div>
+
+     </div>
+
+    </body>
+
+    <script src="script.js"> </script>
+
+
+</body>
+</html>
